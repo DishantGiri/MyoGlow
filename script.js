@@ -45,4 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Floating Buy Button
+    const floatingBtn = document.getElementById('floatingBuyBtn');
+    const heroSection = document.getElementById('hero');
+
+    if (floatingBtn && heroSection) {
+        window.addEventListener('scroll', () => {
+            // Show only on mobile screens (max-width: 768px for the button display rule)
+            if (window.innerWidth <= 768) {
+                const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+                // Show button when hero section is out of viewport
+                if (heroBottom < 0) {
+                    floatingBtn.classList.add('show');
+                } else {
+                    floatingBtn.classList.remove('show');
+                }
+            } else {
+                floatingBtn.classList.remove('show');
+            }
+        });
+    }
 });

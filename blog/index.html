@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="MyoGlow Blog | Skincare Tips & Science-Backed Solutions">
+    <meta name="description"
+        content="Stay updated with the latest in skincare, red light therapy, and non-invasive body sculpting on the MyoGlow Blog.">
+    <title>MyoGlow Blog | Skincare Tips & Science-Backed Solutions</title>
+
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --blog-bg: #fffbf9;
+        }
+
+        body {
+            background: var(--blog-bg);
+        }
+
+        .blog-header {
+            padding: 120px 5% 50px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(240, 168, 208, 0.1), transparent),
+                        radial-gradient(circle at bottom left, rgba(255, 235, 212, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(240, 168, 208, 0.3), transparent);
+        }
+
+        .blog-title {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 950;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            line-height: 1;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .blog-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 60px 4%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            border: 1px solid rgba(240, 168, 208, 0.1);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(240, 168, 208, 0.15);
+            border-color: rgba(240, 168, 208, 0.4);
+        }
+
+        .blog-card-img-wrap {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blog-card:hover .blog-card-img {
+            transform: scale(1.08);
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-tag {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--pink-1);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.6rem;
+            display: inline-block;
+        }
+
+        .blog-card-title {
+            font-size: 1.3rem;
+            font-weight: 850;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+            color: var(--text-color);
+            letter-spacing: -0.5px;
+        }
+
+        .blog-card-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(240, 168, 208, 0.1);
+        }
+
+        .blog-card-link {
+            font-weight: 800;
+            color: var(--pink-1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .blog-card-link:hover {
+            color: #c9538f;
+        }
+
+        .blog-card-link svg {
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card-link:hover svg {
+            transform: translateX(5px);
+        }
+
+        .blog-date {
+            font-size: 0.85rem;
+            color: #a095a5;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 120px 5% 60px;
+            }
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .blog-card-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="../index.html#hero" style="text-decoration: none;" aria-label="Go to Home">
+            <div class="logo">MyoGlow</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html#how-it-works">How It Works</a></li>
+            <li><a href="../index.html#results">Results</a></li>
+            <li><a href="../index.html#reviews">Reviews</a></li>
+            <li><a href="index.html" class="active">Blog</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+        <a href="http://secureofficialsite.store/buy-myoglow" aria-label="Start shopping for MyoGlow">
+            <button class="nav-btn">Start shopping</button>
+        </a>
+        <div class="hamburger" role="button" aria-label="Toggle navigation menu" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <section class="blog-header">
+            <h1 class="blog-title">The Myo<span class="highlight">Glow</span> Blog</h1>
+            <p class="blog-subtitle">Discover expert insights, clinical secrets, and the latest science behind non-invasive skin rejuvenation.</p>
+        </section>
+
+        <section class="blog-grid">
+            <!-- Blog Post 1 -->
+            <article class="blog-card" onclick="window.location.href='does-myoglow-really-work.html'" style="cursor: pointer;">
+                <div class="blog-card-img-wrap">
+                    <img src="../public/blog-hero.webp" alt="Does MyoGlow Really Work?" class="blog-card-img">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Science & Results</span>
+                    <h2 class="blog-card-title">Does MyoGlow Really Work? What You Should Know Before Buying</h2>
+                    <p class="blog-card-excerpt">Is it possible to firm and smooth skin without surgery? We dive deep into the clinical mechanisms of red light and thermal therapy...</p>
+                    <div class="blog-card-footer">
+                        <a href="does-myoglow-really-work.html" class="blog-card-link">
+                            Read Article 
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                        <span class="blog-date">Apr 29, 2026</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="blog-card" style="animation-delay: 0.2s; cursor: pointer;" onclick="window.location.href='is-myoglow-scam-or-legit.html'">
+                <div class="blog-card-img-wrap">
+                    <img src="../public/scam-vs-legit.webp" alt="Is MyoGlow a Scam or Legit?" class="blog-card-img">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Consumer Advice</span>
+                    <h2 class="blog-card-title">Is MyoGlow a Scam or Legit? A Transparent Breakdown</h2>
+                    <p class="blog-card-excerpt">Is MyoGlow a scam? We break down the science, the results, and why buying from official sources matters. Read the transparent truth.</p>
+                    <div class="blog-card-footer">
+                        <a href="is-myoglow-scam-or-legit.html" class="blog-card-link">
+                            Read Article 
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                        <span class="blog-date">Apr 29, 2026</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-logo">MyoGlow</div>
+        <p class="footer-desc">Lift, sculpt & firm your arms at home with clinically inspired red light therapy.
+            Non-invasive, pain-free, 5-minute daily sessions.</p>
+        <div class="footer-nav">
+            <a href="../about.html">About Us</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../terms-of-use.html">Terms of Use</a>
+            <a href="../return-policy.html">Return Policy</a>
+            <a href="../disclosure.html">Disclosure</a>
+            <a href="../contact.html">Contact Us</a>
+            <a href="../write-for-us.html">Write For Us</a>
+        </div>
+        <p class="footer-copy">&copy; 2025 MyoGlow®. All rights reserved.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-    --pink-1: #F0A8D0;
-    --pink-2: #F7B5CA;
-    --pink-3: #FFC6C6;
+    --pink-1: #D67EA8;
+    /* Darkened from #F0A8D0 for contrast */
+    --pink-2: #E08CA3;
+    /* Darkened from #F7B5CA for contrast */
+    --pink-3: #C28282;
+    /* Darkened from #FFC6C6 for contrast */
     --pink-4: #FFEBD4;
     --bg-color: #fff8f6;
     --text-color: #1a1a2e;
-    --text-muted: #6b5b6e;
+    --text-muted: #5a4b5d;
+    /* Darkened from #6b5b6e for contrast */
     --white: #ffffff;
     --shadow-soft: 0 8px 32px rgba(240, 168, 208, 0.25);
     --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
@@ -294,6 +298,15 @@ html {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.4;
+    margin-top: 0.2rem;
+    margin-bottom: 0.8rem;
 }
 
 .hero-description {
@@ -2859,6 +2872,46 @@ html {
     color: var(--text-color);
     font-style: normal;
 }
+
+/* ─── Floating Mobile Buy Button ───────────────────────── */
+.floating-buy-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--pink-1), var(--pink-3));
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(201, 83, 143, 0.4);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.floating-buy-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.floating-buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 83, 143, 0.6);
+}
+
+@media (max-width: 768px) {
+    .floating-buy-btn {
+        display: block;
+        /* Shown only on mobile screens when JS adds .show */
+    }
+}
+
 
 .science-buy-btn {
     display: inline-flex;
